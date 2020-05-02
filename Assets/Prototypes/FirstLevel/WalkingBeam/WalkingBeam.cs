@@ -1,23 +1,26 @@
 ﻿using UnityEngine;
 
-public class WalkingBeam : MonoBehaviour
+namespace Prototypes.FirstLevel.WalkingBeam
 {
-    [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private HingeJoint _hingeJoint;
-    
-    private bool _leaningRight;
-    
-    void Update()
+    public class WalkingBeam : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private HingeJoint _hingeJoint;
+    
+        private bool _leaningRight;
+    
+        void Update()
         {
-            _hingeJoint.motor = new JointMotor
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                force = _hingeJoint.motor.force,
-                targetVelocity = 300 * (_leaningRight ? 1 : -1)
-            };
-            _leaningRight = !_leaningRight;
-            _rigidbody.velocity = Vector3.left * 30;
+                _hingeJoint.motor = new JointMotor
+                {
+                    force = _hingeJoint.motor.force,
+                    targetVelocity = 300 * (_leaningRight ? 1 : -1)
+                };
+                _leaningRight = !_leaningRight;
+                _rigidbody.velocity = Vector3.left * 30;
+            }
         }
     }
 }
