@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-public class AssignPlayer : MonoBehaviour
+namespace Tawlands.Train
 {
-    [SerializeField] private Transform _train;
-
-    private void Awake()
+    public class AssignPlayer : MonoBehaviour
     {
-        transform.SetParent(_train);
+        [SerializeField] private Transform _train;
+
+        private void Awake()
+        {
+            transform.SetParent(_train);
+        }
     }
 }

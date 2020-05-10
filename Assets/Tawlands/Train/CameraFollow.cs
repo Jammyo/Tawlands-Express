@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+namespace Tawlands.Train
 {
-    [SerializeField] private Transform _train;
-    
-    void Update()
+    public class CameraFollow : MonoBehaviour
     {
-        transform.position = new Vector3(_train.position.x, _train.position.y, transform.position.z);
+        [SerializeField] private Transform _train;
+    
+        void Update()
+        {
+            transform.position = new Vector3(_train.position.x, _train.position.y, transform.position.z);
+        }
     }
 }

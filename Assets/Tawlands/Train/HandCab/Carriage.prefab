@@ -609,7 +609,6 @@ GameObject:
   - component: {fileID: 1836498858170735535}
   - component: {fileID: 8375924797487602173}
   - component: {fileID: 3898141805929103662}
-  - component: {fileID: 2617379245364851030}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -698,7 +697,7 @@ HingeJoint:
   m_Anchor: {x: 1, y: -0.6, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.0000023841858, y: 0, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -716,20 +715,6 @@ HingeJoint:
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
---- !u!138 &2617379245364851030
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2299169413850666710}
-  m_ConnectedBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0

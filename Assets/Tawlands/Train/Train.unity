@@ -611,8 +611,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carriage
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2617379245364851030, guid: d964d7463190beb4e90aa9c8faab009c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d964d7463190beb4e90aa9c8faab009c, type: 3}
 --- !u!1001 &7711734373372592228
 PrefabInstance:
