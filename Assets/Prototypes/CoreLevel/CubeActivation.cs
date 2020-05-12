@@ -11,7 +11,6 @@ namespace Prototypes.CoreLevel
         [SerializeField] private TextMeshProUGUI _textMeshPro;
 
         private float _defaultAlbedo;
-        private static readonly int MainTex = Shader.PropertyToID("_MainTex");
         private int _playersTouching = 0;
         private float _health = MaxHealth;
 
