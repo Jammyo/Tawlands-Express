@@ -846,6 +846,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HandCar
       objectReference: {fileID: 0}
+    - target: {fileID: 2853791952657412447, guid: 41c22e6d322e0804db66f8b5934ba5df,
+        type: 3}
+      propertyPath: m_TagString
+      value: Train
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41c22e6d322e0804db66f8b5934ba5df, type: 3}
 --- !u!1 &1730890045
@@ -5893,6 +5898,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carriage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813936157946310209, guid: d964d7463190beb4e90aa9c8faab009c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d964d7463190beb4e90aa9c8faab009c, type: 3}
