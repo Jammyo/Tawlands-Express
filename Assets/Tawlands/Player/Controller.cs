@@ -6,11 +6,14 @@ namespace Tawlands.Player
 {
     public class Controller : MonoBehaviour
     {
-        [SerializeField] private CharacterController _characterController;
+        [SerializeField] private Rigidbody _characterController;
+        [SerializeField] private Transform _groundPosition;
+        [SerializeField] private LayerMask _ground;
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _jumpSpeed;
+        [SerializeField] private float _groundDistance;
 
-        private float _verticalSpeed;
+        private bool _isGrounded = true;
 
         private List<GameObject> _activeCollisions = new List<GameObject>();
 
@@ -26,18 +29,20 @@ namespace Tawlands.Player
 
         void Update()
         {
+            _isGrounded = Physics.CheckSphere(_groundPosition.position, _groundDistance, _ground, QueryTriggerInteraction.Ignore);
+            
             var horizontal = Input.GetAxisRaw("Horizontal");
             var vertical = Input.GetAxisRaw("Vertical");
-            var jump = Input.GetButton("Jump");
+            var jump = Input.GetButtonDown("Jump");
 
             var direction = _maxSpeed * new Vector3(horizontal, 0, vertical).normalized;
-            if (_characterController.isGrounded)
+            
+            if (_isGrounded && jump)
             {
-                _verticalSpeed = jump && _characterController.isGrounded ? _jumpSpeed : 0;
+                _characterController.AddForce(_jumpSpeed * Vector3.up, ForceMode.VelocityChange);
             }
-            _verticalSpeed -= 20 * Time.deltaTime;
-
-            if (_characterController.isGrounded && !jump)
+            
+            if (_isGrounded && !jump)
             {
                 var train = _activeCollisions.FirstOrDefault(o => o.CompareTag("Train"));
                 if(train != null)
@@ -50,7 +55,7 @@ namespace Tawlands.Player
                 }
             }
             
-            var collisionFlags = _characterController.Move(Time.deltaTime * new Vector3(direction.x, _verticalSpeed, direction.z));
+            _characterController.velocity = new Vector3(direction.x, _characterController.velocity.y, direction.z);
         }
     }
 }
