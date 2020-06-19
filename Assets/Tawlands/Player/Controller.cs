@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Tawlands.Player
@@ -14,23 +16,30 @@ namespace Tawlands.Player
         [SerializeField] private float _groundDistance;
 
         private bool _isGrounded = true;
-
-        private List<GameObject> _activeCollisions = new List<GameObject>();
+        [CanBeNull] private Rigidbody _groundRigidBody;
 
         private void OnCollisionEnter(Collision other)
         {
-            _activeCollisions.Add(other.gameObject);
+            if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                _groundRigidBody = other.rigidbody;
+            }
         }
 
-        private void OnCollisionExit(Collision other)
-        {
-            _activeCollisions.Remove(other.gameObject);
-        }
-
-        void Update()
+        private void Update()
         {
             _isGrounded = Physics.CheckSphere(_groundPosition.position, _groundDistance, _ground, QueryTriggerInteraction.Ignore);
             
+            
+            var nameToLayer = ~LayerMask.NameToLayer("Ground");
+            if (Physics.Raycast(transform.position, Vector3.down, out var hitInfo, 20, nameToLayer))
+            {
+                if (!hitInfo.collider.CompareTag("Train"))
+                {
+                    _groundRigidBody = null;
+                }
+            }
+
             var horizontal = Input.GetAxisRaw("Horizontal");
             var vertical = Input.GetAxisRaw("Vertical");
             var jump = Input.GetButtonDown("Jump");
@@ -42,17 +51,9 @@ namespace Tawlands.Player
                 _characterController.AddForce(_jumpSpeed * Vector3.up, ForceMode.VelocityChange);
             }
             
-            if (_isGrounded && !jump)
+            if (_groundRigidBody != null)
             {
-                var train = _activeCollisions.FirstOrDefault(o => o.CompareTag("Train"));
-                if(train != null)
-                {
-                    var rigidbody = train.GetComponent<Rigidbody>();
-                    if (rigidbody != null)
-                    {
-                        direction += rigidbody.velocity;
-                    }
-                }
+                direction += _groundRigidBody.velocity;
             }
             
             _characterController.velocity = new Vector3(direction.x, _characterController.velocity.y, direction.z);

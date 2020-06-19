@@ -697,7 +697,7 @@ HingeJoint:
   m_Anchor: {x: 1, y: -0.6, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000023841858, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1138,7 +1138,7 @@ GameObject:
   - component: {fileID: 3733451338804204135}
   m_Layer: 0
   m_Name: Carriage
-  m_TagString: Untagged
+  m_TagString: Train
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
